@@ -1,5 +1,5 @@
 import { FaLocationDot } from "react-icons/fa6";
-import { FaPhone } from "react-icons/fa";
+import { FaTelegramPlane } from "react-icons/fa";
 import { IoMail } from "react-icons/io5";
 import { ProfileImage } from "@/shared/ui/ProfileImage";
 
@@ -26,8 +26,14 @@ export function ResumePage() {
                         </p>
                     </div>
                     <div className="mt-2 flex items-center">
-                        <FaPhone className="mr-2 text-red-aqua" />
-                        <p className="text-md sm:text-lg">+7(908)510-88-31</p>
+                        <FaTelegramPlane className="mr-2 text-red-aqua" />
+                        <a
+                            href="https://t.me/si1encer"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            @si1encer
+                        </a>
                     </div>
                     <div className="mt-2 flex items-center">
                         <IoMail className="mr-2 text-red-aqua" />
