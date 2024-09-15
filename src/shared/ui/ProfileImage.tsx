@@ -10,8 +10,10 @@ export const ProfileImage = (props: ProfileImageProps) => {
     const { image, className } = props;
 
     return (
-        <div className={cn("w-1/6", className)}>
-            <Image src={image!} alt="Icon" className="rounded-full" />
-        </div>
+        <Image
+            src={image!}
+            alt="Icon"
+            className={cn("rounded-full", className)}
+        />
     );
 };
