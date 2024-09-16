@@ -215,11 +215,32 @@ export function ResumePage() {
                             <p className="text-xs">Английский (разговорный)</p>
                         </div>
                         <div className="mt-5">
-                            <p className="font-semibold">ЛИЧНЫЕ КАЧЕСТВА</p>
-                            <p className="text-xs">
-                                Самостоятельность. Ответственность. Стремление к
-                                обучению. Командный игрок.
-                            </p>
+                            <p className="font-semibold">ДОСТИЖЕНИЯ</p>
+                            <div className="mt-3">
+                                <p className="text-xs">май 2024</p>
+                                <li className="text-xs">
+                                    ИТ-Чемпионат в области ИТС и цифровых
+                                    технологий на транспорте (2 этап)
+                                </li>
+                                <li className="text-xs">Призер.</li>
+                                <li className="text-xs">
+                                    Создать веб-сервис по работе с отраслевым
+                                    классификаторами строительной информации,
+                                    строительных ресурсов и федеральной сметной
+                                    нормативной базой, то есть свести объекты
+                                    дорожной инфраструктуры с действующими
+                                    сметными нормами.
+                                </li>
+                            </div>
+                            <div className="mt-3">
+                                <p className="text-xs">сентябрь 2024</p>
+                                <li className="text-xs">
+                                    ИТ-Чемпионат в области ИТС и цифровых
+                                    технологий на транспорте (финал)
+                                </li>
+                                <li className="text-xs">...</li>
+                                <li className="text-xs">Создать ...</li>
+                            </div>
                         </div>
                         <div className="mt-5">
                             <p className="font-semibold">О СЕБЕ</p>
