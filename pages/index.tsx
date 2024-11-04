@@ -1,3 +1,5 @@
-import { ResumePage } from "@/pages/ResumePage";
+import { languageDetection } from "next-i18next-static-site";
 
-export default ResumePage;
+export default function ResumePage() {
+    languageDetection();
+}

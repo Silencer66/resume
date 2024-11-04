@@ -2,27 +2,78 @@ import { FaLocationDot } from "react-icons/fa6";
 import { FaTelegramPlane } from "react-icons/fa";
 import { IoMail } from "react-icons/io5";
 import { ProfileImage } from "@/shared/ui/ProfileImage";
+import { useRouter } from "next/router";
 
 import photo from "../../public/profile-photo.jpg";
+import {
+    defaultLanguage,
+    languages,
+    useTranslation,
+} from "next-i18next-static-site";
+import { useState } from "react";
 
 export function ResumePage() {
+    const { t } = useTranslation();
+    const router = useRouter();
+
+    const [langText, setLangText] = useState("EN");
+    const { pathname, query, asPath } = router;
+
+    const toggle = () => {
+        const slug = asPath.split("/")[1];
+        const langSlug = languages.includes(slug) && slug;
+        const language: any = query.lang || langSlug || defaultLanguage;
+
+        let newLang = "";
+        if (language === "en") {
+            newLang = "ru";
+            setLangText("EN");
+        } else {
+            setLangText("RU");
+            newLang = "en";
+        }
+
+        let href = pathname;
+        if (newLang) {
+            if (pathname.startsWith("/404")) {
+                href = `/${newLang}`;
+            } else {
+                href = pathname.replace("[lang]", newLang);
+            }
+        } else {
+            if (language) {
+                href = `/${language}${href}`;
+            } else {
+                href = `/${href}`;
+            }
+        }
+
+        // Fix double slashes
+        href = href.replace(/([^:]\/)\/+/g, "$1").replace("//", "/");
+
+        router.push(href);
+    };
+
     return (
         <div className="m-5 max-w-5xl mx-auto">
+            <button className="m-3" onClick={toggle}>
+                {langText}
+            </button>
             <div className="flex flex-col sm:flex-row justify-between items-center">
                 <div className="m-3 text-left">
                     <div className="mt">
                         <p className="text-2xl sm:text-xxl font-bold">
-                            ПАЛАМАРЧУК
+                            {t("ПАЛАМАРЧУК")}
                         </p>
                     </div>
                     <div>
                         <p className="text-2xl sm:text-xxl font-bold">
-                            АРТЕМ МАКСИМОВИЧ
+                            {t("АРТЕМ МАКСИМОВИЧ")}
                         </p>
                     </div>
                     <div className="mt-2">
                         <p className="text-md sm:text-lg text-red-aqua">
-                            программист
+                            {t("программист")}
                         </p>
                     </div>
                     <div className="mt-2 flex items-center">
@@ -43,7 +94,7 @@ export function ResumePage() {
                     </div>
                     <div className="mt-2 flex items-center">
                         <FaLocationDot className="mr-2 text-red-aqua" />
-                        <p className="text-md sm:text-lg">Москва</p>
+                        <p className="text-md sm:text-lg">{t("Москва")}</p>
                     </div>
                 </div>
                 <ProfileImage
@@ -57,18 +108,20 @@ export function ResumePage() {
                     {/* секция "основное" */}
                     <section className="mt-5">
                         <div className="text-center border-red-aqua border-t-2 border-b-2">
-                            <p className="text-xl font-bold">основное</p>
+                            <p className="text-xl font-bold">{t("основное")}</p>
                         </div>
                         <div className="mt-4">
-                            <p className="font-bold">график работы</p>
+                            <p className="font-bold">{t("график работы")}</p>
                             <p className="text-xs">
-                                Гибкий график. Полный день. Удалённая работа.
+                                {t(
+                                    "Гибкий график. Полный день. Удалённая работа."
+                                )}
                             </p>
                         </div>
                         <div className="mt-3">
-                            <p className="font-bold">занятость</p>
+                            <p className="font-bold">{t("занятость")}</p>
                             <p className="text-xs">
-                                Полная. Частичная. Проектная. Стажировка.
+                                {t("Полная. Частичная. Проектная. Стажировка.")}
                             </p>
                         </div>
                     </section>
@@ -76,19 +129,19 @@ export function ResumePage() {
                     {/* секция "обо мне" */}
                     <section className="mt-5">
                         <div className="text-center border-red-aqua border-t-2 border-b-2">
-                            <p className="text-xl font-bold">обо мне</p>
+                            <p className="text-xl font-bold">{t("обо мне")}</p>
                         </div>
                         <div className="mt-5">
-                            <p className="font-bold">дата рождения</p>
-                            <p className="text-xs">23 мая 2002</p>
+                            <p className="font-bold">{t("дата рождения")}</p>
+                            <p className="text-xs">{t("23 мая 2002")}</p>
                         </div>
                         <div className="mt-3">
-                            <p className="font-bold">образование</p>
-                            <p className="text-xs">Высшее</p>
+                            <p className="font-bold">{t("образование")}</p>
+                            <p className="text-xs">{t("Высшее")}</p>
                         </div>
                         <div className="mt-3">
-                            <p className="font-bold">гражданство</p>
-                            <p className="text-xs">Россия</p>
+                            <p className="font-bold">{t("гражданство")}</p>
+                            <p className="text-xs">{t("Россия")}</p>
                         </div>
                     </section>
                 </div>
@@ -97,68 +150,91 @@ export function ResumePage() {
                     {/* секция "опыт работы" */}
                     <section className="mt-5">
                         <div className="text-center border-red-aqua border-t-2 border-b-2">
-                            <p className="text-xl font-bold">опыт работы</p>
+                            <p className="text-xl font-bold">
+                                {t("опыт работы")}
+                            </p>
                         </div>
 
                         <section className="mt-5">
                             <div>
-                                <p className="font-semibold">ООО ТОПСРМ</p>
+                                <p className="font-semibold">
+                                    {t("ООО ТОПСРМ")}
+                                </p>
                                 <p className="text-xs">
-                                    Февраль 2023 - Октябрь 2023
+                                    {t("Февраль 2023 - Октябрь 2023")}
                                 </p>
                             </div>
                             <div className="mt-3">
                                 <p className="font-semibold">
-                                    младший инженер программист
+                                    {"младший инженер программист"}
                                 </p>
                                 <p className="text-xs">
-                                    Доработка и обслуживание CRM системы.
+                                    {t("Доработка и обслуживание CRM системы.")}
                                 </p>
                                 <ul className="list-disc list-inside">
                                     <li>
-                                        Написание плагинов, бизнес-процессов в
-                                        low code платформе.
+                                        {t(
+                                            "Написание плагинов, бизнес-процессов в low code платформе."
+                                        )}
                                     </li>
                                     <li>
-                                        Работа с sql базами данных, CRUD
-                                        запросы.
+                                        {t(
+                                            "Работа с sql базами данных, CRUDзапросы."
+                                        )}
                                     </li>
-                                    <li>Написание web-сервисов.</li>
+                                    <li>{t("Написание web-сервисов.")}</li>
                                 </ul>
                             </div>
                         </section>
 
                         <section className="mt-6">
                             <div>
-                                <p className="font-semibold">ПАРАМЕТРИКА</p>
+                                <p className="font-semibold">
+                                    {t("ПАРАМЕТРИКА")}
+                                </p>
                                 <p className="text-xs">
-                                    Октябрь 2023 - по настоящее время
+                                    {t("Октябрь 2023 - по настоящее время")}
                                 </p>
                             </div>
                             <div className="mt-3">
                                 <p className="font-semibold">
-                                    младший инженер программист
+                                    {t("младший инженер программист")}
                                 </p>
                                 <p className="text-xs">
-                                    Разработка ПО для архитекторов на базе
-                                    ASP.NET и React.
+                                    {t(
+                                        "Разработка ПО для архитекторов на базе ASP.NET и React."
+                                    )}
                                 </p>
                                 <ul className="list-disc list-inside">
-                                    <li>Работа с C# и TypeScript.</li>
-                                    <li>Поддержка базы данных MongoDB.</li>
-                                    <li>Применение паттернов MVC и MediatR.</li>
-                                    <li>Unit-тесты и Swagger.</li>
-                                    <li>Разработка REST API и WebSockets.</li>
+                                    <li>{t("Работа с C# и TypeScript.")}</li>
                                     <li>
-                                        Интеграция FSD (Feature-Sliced Design).
+                                        {t("Поддержка базы данных MongoDB.")}
                                     </li>
                                     <li>
-                                        Компонентные тесты и Storybook для UI.
+                                        {t(
+                                            "Применение паттернов MVC и MediatR."
+                                        )}
+                                    </li>
+                                    <li>{t("Unit-тесты и Swagger.")}</li>
+                                    <li>
+                                        {t("Разработка REST API и WebSockets.")}
                                     </li>
                                     <li>
-                                        Настройка Webpack и работа с Next.js.
+                                        {t(
+                                            "Интеграция FSD (Feature-Sliced Design)."
+                                        )}
                                     </li>
-                                    <li>Three.js для 3D-графики.</li>
+                                    <li>
+                                        {t(
+                                            "Компонентные тесты и Storybook для UI."
+                                        )}
+                                    </li>
+                                    <li>
+                                        {t(
+                                            "Настройка Webpack и работа с Next.js."
+                                        )}
+                                    </li>
+                                    <li>{t("Three.js для 3D-графики.")}</li>
                                 </ul>
                             </div>
                         </section>
@@ -167,35 +243,41 @@ export function ResumePage() {
                     {/* секция "образование" */}
                     <section className="mt-5">
                         <div className="text-center border-red-aqua border-t-2 border-b-2">
-                            <p className="text-xl font-bold">образование</p>
+                            <p className="text-xl font-bold">
+                                {t("образование")}
+                            </p>
                         </div>
                         <section className="mt-5">
                             <div>
                                 <p className="font-semibold">
-                                    МОСКОВСКИЙ АВТОМОБИЛЬНО-ДОРОЖНЫЙ
-                                    ГОСУДАРСТВЕННЫЙ ТЕХНИЧЕСКИЙ УНИВЕРСИТЕТ
-                                    (МАДИ)
+                                    {t(
+                                        "МОСКОВСКИЙ АВТОМОБИЛЬНО-ДОРОЖНЫЙ ГОСУДАРСТВЕННЫЙ ТЕХНИЧЕСКИЙ УНИВЕРСИТЕТ (МАДИ)"
+                                    )}
                                 </p>
-                                <p className="text-xs">2024</p>
+                                <p className="text-xs">{"2024"}</p>
                             </div>
                             <div className="flex">
                                 <div>
-                                    <p className="font-semibold">факультет</p>
                                     <p className="font-semibold">
-                                        специальность
+                                        {t("факультет")}
                                     </p>
                                     <p className="font-semibold">
-                                        форма обучения
+                                        {t("специальность")}
+                                    </p>
+                                    <p className="font-semibold">
+                                        {t("форма обучения")}
                                     </p>
                                 </div>
                                 <div className="ml-3">
                                     <p className="text-xs">
-                                        Факультет управления
+                                        {t("Факультет управления")}
                                     </p>
                                     <p className="text-xs">
-                                        Информатика и вычислительная техника
+                                        {t(
+                                            "Информатика и вычислительная техника"
+                                        )}
                                     </p>
-                                    <p className="text-xs">Очная</p>
+                                    <p className="text-xs">{t("Очная")}</p>
                                 </div>
                             </div>
                         </section>
@@ -205,49 +287,50 @@ export function ResumePage() {
                     <section className="mt-5">
                         <div className="text-center border-red-aqua border-t-2 border-b-2">
                             <p className="text-xl font-bold">
-                                дополнительная информация
+                                {t("дополнительная информация")}
                             </p>
                         </div>
                         <div className="mt-5">
                             <p className="font-semibold">
-                                ВЛАДЕНИЕ ИНОСТРАННЫМИ ЯЗЫКАМИ
+                                {t("ВЛАДЕНИЕ ИНОСТРАННЫМИ ЯЗЫКАМИ")}
                             </p>
-                            <p className="text-xs">Английский (разговорный)</p>
+                            <p className="text-xs">
+                                {t("Английский (разговорный)")}
+                            </p>
                         </div>
                         <div className="mt-5">
-                            <p className="font-semibold">ДОСТИЖЕНИЯ</p>
+                            <p className="font-semibold">{t("ДОСТИЖЕНИЯ")}</p>
                             <div className="mt-3">
-                                <p className="text-xs">май 2024</p>
+                                <p className="text-xs">{t("май 2024")}</p>
                                 <li className="text-xs">
-                                    ИТ-Чемпионат в области ИТС и цифровых
-                                    технологий на транспорте (2 этап)
+                                    {t(
+                                        "ИТ-Чемпионат в области ИТС и цифровых технологий на транспорте (2 этап)"
+                                    )}
                                 </li>
-                                <li className="text-xs">Призер.</li>
+                                <li className="text-xs">{t("Призер.")}</li>
                                 <li className="text-xs">
-                                    Создать веб-сервис по работе с отраслевым
-                                    классификаторами строительной информации,
-                                    строительных ресурсов и федеральной сметной
-                                    нормативной базой, то есть свести объекты
-                                    дорожной инфраструктуры с действующими
-                                    сметными нормами.
+                                    {t(
+                                        "Создать веб-сервис по работе с отраслевым классификаторами строительной информации, строительных ресурсов и федеральной сметной нормативной базой, то есть свести объекты дорожной инфраструктуры с действующими сметными нормами."
+                                    )}
                                 </li>
                             </div>
                             <div className="mt-3">
-                                <p className="text-xs">сентябрь 2024</p>
+                                <p className="text-xs">{"сентябрь 2024"}</p>
                                 <li className="text-xs">
-                                    ИТ-Чемпионат в области ИТС и цифровых
-                                    технологий на транспорте (финал)
+                                    {t(
+                                        "ИТ-Чемпионат в области ИТС и цифровых технологий на транспорте (финал)"
+                                    )}
                                 </li>
                                 <li className="text-xs">...</li>
                                 <li className="text-xs">Создать ...</li>
                             </div>
                         </div>
                         <div className="mt-5">
-                            <p className="font-semibold">О СЕБЕ</p>
+                            <p className="font-semibold">{t("О СЕБЕ")}</p>
                             <p className="text-xs">
-                                Я активный и целеустремленный человек. В
-                                свободное время занимаюсь спортом: играю в
-                                футбол, хоккей, настольный теннис.
+                                {t(
+                                    "Я активный и целеустремленный человек. В свободное время занимаюсь спортом: играю в футбол, хоккей, настольный теннис."
+                                )}
                             </p>
                         </div>
                     </section>
