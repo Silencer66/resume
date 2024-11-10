@@ -10,13 +10,12 @@ import {
     languages,
     useTranslation,
 } from "next-i18next-static-site";
-import { useState } from "react";
 
 export function ResumePage() {
     const { t } = useTranslation();
     const router = useRouter();
 
-    const [langText, setLangText] = useState("EN");
+    const langText = "EN | RU";
     const { pathname, query, asPath } = router;
 
     const toggle = () => {
@@ -24,14 +23,7 @@ export function ResumePage() {
         const langSlug = languages.includes(slug) && slug;
         const language: any = query.lang || langSlug || defaultLanguage;
 
-        let newLang = "";
-        if (language === "en") {
-            newLang = "ru";
-            setLangText("EN");
-        } else {
-            setLangText("RU");
-            newLang = "en";
-        }
+        let newLang = language === "en" ? "ru" : "en";
 
         let href = pathname;
         if (newLang) {
