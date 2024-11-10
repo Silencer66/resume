@@ -1,7 +1,6 @@
 const nextConfig = {
     output: "export",
-    basePath: "/resume", // замените 'repo-name' на название вашего репозитория
-    assetPrefix: "/resume",
+    assetPrefix: "./",
     images: {
         unoptimized: true,
     },
