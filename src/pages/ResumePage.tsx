@@ -2,63 +2,18 @@ import { FaLocationDot } from "react-icons/fa6";
 import { FaTelegramPlane } from "react-icons/fa";
 import { IoMail } from "react-icons/io5";
 import { ProfileImage } from "@/shared/ui/ProfileImage";
-import { useRouter } from "next/router";
 
 import photo from "../../public/profile-photo.jpg";
-import {
-    defaultLanguage,
-    languages,
-    useTranslation,
-} from "next-i18next-static-site";
-import { useState } from "react";
+
+import { LanguageSwitcher, useTranslation } from "next-export-i18n";
 
 export function ResumePage() {
     const { t } = useTranslation();
-    const router = useRouter();
-
-    const [langText, setLangText] = useState("EN");
-    const { pathname, query, asPath } = router;
-
-    const toggle = () => {
-        const slug = asPath.split("/")[1];
-        const langSlug = languages.includes(slug) && slug;
-        const language: any = query.lang || langSlug || defaultLanguage;
-
-        let newLang = "";
-        if (language === "en") {
-            newLang = "ru";
-            setLangText("EN");
-        } else {
-            setLangText("RU");
-            newLang = "en";
-        }
-
-        let href = pathname;
-        if (newLang) {
-            if (pathname.startsWith("/404")) {
-                href = `/${newLang}`;
-            } else {
-                href = pathname.replace("[lang]", newLang);
-            }
-        } else {
-            if (language) {
-                href = `/${language}${href}`;
-            } else {
-                href = `/${href}`;
-            }
-        }
-
-        // Fix double slashes
-        href = href.replace(/([^:]\/)\/+/g, "$1").replace("//", "/");
-
-        router.push(href);
-    };
 
     return (
         <div className="m-5 max-w-5xl mx-auto">
-            <button className="m-3" onClick={toggle}>
-                {langText}
-            </button>
+            <LanguageSwitcher lang="ru">ru</LanguageSwitcher> |{" "}
+            <LanguageSwitcher lang="en">en</LanguageSwitcher>
             <div className="flex flex-col sm:flex-row justify-between items-center">
                 <div className="m-3 text-left">
                     <div className="mt">
@@ -102,7 +57,6 @@ export function ResumePage() {
                     className="max-w-xs w-full sm:w-auto sm:ml-5"
                 />
             </div>
-
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-6">
                 <div className="col-span-1">
                     {/* секция "основное" */}
