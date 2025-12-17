@@ -3,11 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "build": "next build",
+    "build": "next build && node scripts/post-build.js",
     "dev": "next dev",
-    "export": "next build",
+    "export": "next build && node scripts/post-build.js",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "post-build": "node scripts/post-build.js"
   },
   "dependencies": {
     "clsx": "^2.1.1",

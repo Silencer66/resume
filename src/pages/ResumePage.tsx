@@ -19,7 +19,11 @@ export function ResumePage() {
     const { pathname, query, asPath } = router;
 
     const toggle = () => {
-        const slug = asPath.split("/")[1];
+        const basePath = "/resume";
+        // Remove basePath from asPath to get clean path
+        const cleanPath = asPath.replace(new RegExp(`^${basePath}`), "") || "/";
+        const pathParts = cleanPath.split("/").filter(Boolean);
+        const slug = pathParts[0];
         const langSlug = languages.includes(slug) && slug;
         const language: any = query.lang || langSlug || defaultLanguage;
 
@@ -42,6 +46,9 @@ export function ResumePage() {
 
         // Fix double slashes
         href = href.replace(/([^:]\/)\/+/g, "$1").replace("//", "/");
+
+        // Add basePath back to href
+        href = `${basePath}${href}`;
 
         router.push(href);
     };
