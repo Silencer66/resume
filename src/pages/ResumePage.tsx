@@ -29,28 +29,16 @@ export function ResumePage() {
 
         let newLang = language === "en" ? "ru" : "en";
 
-        let href = pathname;
-        if (newLang) {
-            if (pathname.startsWith("/404")) {
-                href = `/${newLang}`;
-            } else {
-                href = pathname.replace("[lang]", newLang);
-            }
-        } else {
-            if (language) {
-                href = `/${language}${href}`;
-            } else {
-                href = `/${href}`;
-            }
-        }
+        // Build the new path with basePath
+        let href = `${basePath}/${newLang}`;
 
         // Fix double slashes
         href = href.replace(/([^:]\/)\/+/g, "$1").replace("//", "/");
 
-        // Add basePath back to href
-        href = `${basePath}${href}`;
-
-        router.push(href);
+        // Use window.location for static export to avoid router issues
+        if (typeof window !== "undefined") {
+            window.location.href = href;
+        }
     };
 
     return (
