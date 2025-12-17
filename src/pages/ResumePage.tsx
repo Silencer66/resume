@@ -98,7 +98,7 @@ export function ResumePage() {
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-6">
                 <div className="col-span-1">
                     {/* секция "основное" */}
-                    <section className="mt-5">
+                    {/* <section className="mt-5">
                         <div className="text-center border-red-aqua border-t-2 border-b-2">
                             <p className="text-xl font-bold">{t("основное")}</p>
                         </div>
@@ -116,7 +116,7 @@ export function ResumePage() {
                                 {t("Полная. Частичная. Проектная. Стажировка.")}
                             </p>
                         </div>
-                    </section>
+                    </section> */}
 
                     {/* секция "обо мне" */}
                     <section className="mt-5">
@@ -146,39 +146,6 @@ export function ResumePage() {
                                 {t("опыт работы")}
                             </p>
                         </div>
-
-                        <section className="mt-5">
-                            <div>
-                                <p className="font-semibold">
-                                    {t("ООО ТОПСРМ")}
-                                </p>
-                                <p className="text-xs">
-                                    {t("Февраль 2023 - Октябрь 2023")}
-                                </p>
-                            </div>
-                            <div className="mt-3">
-                                <p className="font-semibold">
-                                    {"младший инженер программист"}
-                                </p>
-                                <p className="text-xs">
-                                    {t("Доработка и обслуживание CRM системы.")}
-                                </p>
-                                <ul className="list-disc list-inside">
-                                    <li>
-                                        {t(
-                                            "Написание плагинов, бизнес-процессов в low code платформе."
-                                        )}
-                                    </li>
-                                    <li>
-                                        {t(
-                                            "Работа с sql базами данных, CRUDзапросы."
-                                        )}
-                                    </li>
-                                    <li>{t("Написание web-сервисов.")}</li>
-                                </ul>
-                            </div>
-                        </section>
-
                         <section className="mt-6">
                             <div>
                                 <p className="font-semibold">
@@ -230,6 +197,85 @@ export function ResumePage() {
                                 </ul>
                             </div>
                         </section>
+                        <section className="mt-5">
+                            <div>
+                                <p className="font-semibold">
+                                    {t("ООО ТОПСРМ")}
+                                </p>
+                                <p className="text-xs">
+                                    {t("Февраль 2023 - Октябрь 2023")}
+                                </p>
+                            </div>
+                            <div className="mt-3">
+                                <p className="font-semibold">
+                                    {t("младший инженер программист")}
+                                </p>
+                                <p className="text-xs">
+                                    {t("Доработка и обслуживание CRM системы.")}
+                                </p>
+                                <ul className="list-disc list-inside">
+                                    <li>
+                                        {t(
+                                            "Написание плагинов, бизнес-процессов в low code платформе."
+                                        )}
+                                    </li>
+                                    <li>
+                                        {t(
+                                            "Работа с sql базами данных, CRUDзапросы."
+                                        )}
+                                    </li>
+                                    <li>{t("Написание web-сервисов.")}</li>
+                                </ul>
+                            </div>
+                        </section>
+                        <section className="mt-5">
+                            <div>
+                                <p className="font-semibold">
+                                    {t("Telegram Chess")}
+                                </p>
+                                <p className="text-xs">
+                                    {t("2024 — 2025")} | {t("Pet-проект")}
+                                </p>
+                            </div>
+                            <div className="mt-3">
+                                <p className="font-semibold">
+                                    {t("Fullstack-разработчик")}
+                                </p>
+                                <p className="text-xs">
+                                    <a
+                                        href="https://t.me/monte_cristo_chess_bot"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="text-red-aqua hover:underline"
+                                    >
+                                        https://t.me/monte_cristo_chess_bot
+                                    </a>
+                                </p>
+                                <p className="text-xs mt-2">
+                                    {t(
+                                        "Онлайн-шахматы, реализованные как Telegram Web App с возможностью игры на криптовалюту USDT и внутриигровыми покупками за Telegram Stars."
+                                    )}
+                                </p>
+                                <ul className="list-disc list-inside mt-2">
+                                    <li>
+                                        {t(
+                                            "Разработка серверной части на Node.js с использованием Prisma и PostgreSQL."
+                                        )}
+                                    </li>
+                                    <li>
+                                        {t(
+                                            "Реализация клиентской части на React + Tailwind CSS, модульная сборка через Vite."
+                                        )}
+                                    </li>
+                                    <li>
+                                        {t(
+                                            "Интеграция Socket.io для real-time взаимодействия между игроками."
+                                        )}
+                                    </li>
+                                    <li>{t("Работа с Web3 API.")}</li>
+                                </ul>
+                            </div>
+                        </section>
                     </section>
 
                     {/* секция "образование" */}
@@ -246,12 +292,15 @@ export function ResumePage() {
                                         "МОСКОВСКИЙ АВТОМОБИЛЬНО-ДОРОЖНЫЙ ГОСУДАРСТВЕННЫЙ ТЕХНИЧЕСКИЙ УНИВЕРСИТЕТ (МАДИ)"
                                     )}
                                 </p>
-                                <p className="text-xs">{"2024"}</p>
+                                <p className="text-xs">{"2024-2026"}</p>
                             </div>
                             <div className="flex">
                                 <div>
                                     <p className="font-semibold">
                                         {t("факультет")}
+                                    </p>
+                                    <p className="font-semibold">
+                                        {t("степень")}
                                     </p>
                                     <p className="font-semibold">
                                         {t("специальность")}
@@ -264,6 +313,45 @@ export function ResumePage() {
                                     <p className="text-xs">
                                         {t("Факультет управления")}
                                     </p>
+                                    <p className="text-xs">{t("Магистр")}</p>
+                                    <p className="text-xs">
+                                        {t(
+                                            "Информатика и вычислительная техника"
+                                        )}
+                                    </p>
+                                    <p className="text-xs">{t("Очная")}</p>
+                                </div>
+                            </div>
+                        </section>
+                        <section className="mt-5">
+                            <div>
+                                <p className="font-semibold">
+                                    {t(
+                                        "МОСКОВСКИЙ АВТОМОБИЛЬНО-ДОРОЖНЫЙ ГОСУДАРСТВЕННЫЙ ТЕХНИЧЕСКИЙ УНИВЕРСИТЕТ (МАДИ)"
+                                    )}
+                                </p>
+                                <p className="text-xs">{"2020-2024"}</p>
+                            </div>
+                            <div className="flex">
+                                <div>
+                                    <p className="font-semibold">
+                                        {t("факультет")}
+                                    </p>
+                                    <p className="font-semibold">
+                                        {t("степень")}
+                                    </p>
+                                    <p className="font-semibold">
+                                        {t("специальность")}
+                                    </p>
+                                    <p className="font-semibold">
+                                        {t("форма обучения")}
+                                    </p>
+                                </div>
+                                <div className="ml-3">
+                                    <p className="text-xs">
+                                        {t("Факультет управления")}
+                                    </p>
+                                    <p className="text-xs">{t("Бакалавр")}</p>
                                     <p className="text-xs">
                                         {t(
                                             "Информатика и вычислительная техника"
@@ -286,9 +374,7 @@ export function ResumePage() {
                             <p className="font-semibold">
                                 {t("ВЛАДЕНИЕ ИНОСТРАННЫМИ ЯЗЫКАМИ")}
                             </p>
-                            <p className="text-xs">
-                                {t("Английский (разговорный)")}
-                            </p>
+                            <p className="text-xs">{t("Английский (B1)")}</p>
                         </div>
                         <div className="mt-5">
                             <p className="font-semibold">{t("ДОСТИЖЕНИЯ")}</p>
@@ -296,10 +382,9 @@ export function ResumePage() {
                                 <p className="text-xs">{t("май 2024")}</p>
                                 <li className="text-xs">
                                     {t(
-                                        "ИТ-Чемпионат в области ИТС и цифровых технологий на транспорте (2 этап)"
+                                        "ИТ-Чемпионат в области ИТС и цифровых технологий на транспорте (2 этап), призёр"
                                     )}
                                 </li>
-                                <li className="text-xs">{t("Призер.")}</li>
                                 <li className="text-xs">
                                     {t(
                                         "Создать веб-сервис по работе с отраслевым классификаторами строительной информации, строительных ресурсов и федеральной сметной нормативной базой, то есть свести объекты дорожной инфраструктуры с действующими сметными нормами."
@@ -307,14 +392,12 @@ export function ResumePage() {
                                 </li>
                             </div>
                             <div className="mt-3">
-                                <p className="text-xs">{"сентябрь 2024"}</p>
+                                <p className="text-xs">{t("сентябрь 2024")}</p>
                                 <li className="text-xs">
                                     {t(
                                         "ИТ-Чемпионат в области ИТС и цифровых технологий на транспорте (финал)"
                                     )}
                                 </li>
-                                <li className="text-xs">...</li>
-                                <li className="text-xs">Создать ...</li>
                             </div>
                         </div>
                         <div className="mt-5">
